@@ -28,7 +28,7 @@
   
   <script>
   export default {
-    name: 'HelloWorld',
+    name: 'AccueilPage',
     props: {
       titre: String
     }
