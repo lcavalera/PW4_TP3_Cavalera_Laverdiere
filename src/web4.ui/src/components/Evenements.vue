@@ -6,21 +6,24 @@
             <thead>
                 <th>Titre</th>
                 <th>Ville</th>
-                <th>Nbr</th>
-                <th>Participation</th>
+                <th>Nbr Participation</th>
                 <th>Prix</th>
                 <th>Catégories</th>
                 <th>Date de début</th>
                 <th>Action</th>
             </thead>
             <tbody>
-                <tr :class="{ done: item.done }" v-for="(item, index) in todos" :key="index">
-                    <td><input type="checkbox" :checked="item.done" @click="toggleTodo(index)"></td>
-                    <td>{{ item.text }}</td>
+                <tr :class="{ done: item.done }" v-for="(item, index) in evenements" :key="index">
+                    <td>{{ item.titre }}</td>
+                    <td>{{ item.ville }}</td>
+                    <td>{{ item.participations }}</td>
+                    <td>{{ item.prix }}</td>
+                    <td>{{ item.categorieIds }}</td>
+                    <td>{{ item.dateDebut }}</td>
                     <td>
                         <button @click="deleteTodo(index)"><i class="fa fa-trash"></i></button>
-                        <button @click="$router.push(`/todos/${item.id}/edit`)">edit</button>
-                        <button @click="$router.push(`/todos/${item.id}/view`)">view</button>
+                        <button @click="$router.push(`/evenements/${item.id}/edit`)">edit</button>
+                        <button @click="$router.push(`/evenements/${item.id}/view`)">view</button>
                     </td>
                 </tr>
             </tbody>
@@ -43,13 +46,17 @@
         filter: ""
       }
     },
+    created() {
+      this.getEvenementsApi()
+    // .catch((error) => this.$toast.error(`Erreur lors de la comunication avec le serveur lors du chargement de la liste des évènements. (Error: ${error.response == null ? error.code : error.response.status})`))
+    },
     methods: {
       ...mapActions({
-
+        getEvenementsApi: 'getEvenementsApi'
       })
     },
     computed: {
-      ...mapState({}),
+      ...mapState({ evenements: 'evenements'}),
       ...mapGetters({})
     }
   }

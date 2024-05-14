@@ -9,7 +9,7 @@
 import Evenements from '../components/Evenements.vue';
   
   export default {
-    name: 'AccueilView',
+    name: 'EvenementsView',
     components: {
       Evenements
     }

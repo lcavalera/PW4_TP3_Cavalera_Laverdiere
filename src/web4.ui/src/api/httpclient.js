@@ -1,12 +1,17 @@
 import axios from 'axios';
 
 const httpclient = axios.create({
-    baseURL: 'https://localhost:8194/',
+    baseURL: 'http://localhost:5272/api',
     timeout: 3000,
-    auth: {
-        username: 'identifiant',
-        password: 'identifiant'
+    defaults: {
+        headers: {
+            common: 'Access-Control-Allow-Origin'
+        }
     }
+    // auth: {
+    //     username: 'identifiant',
+    //     password: 'identifiant'
+    // }
 })
 
 httpclient.defaults.headers.post['Content-Type'] = 'application/json'

@@ -79,6 +79,11 @@ builder.Services.AddAuthorization(options =>
     options.DefaultPolicy = options.GetPolicy("RequireScope");
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "MyAllowSpecificOrigins", policy => policy.WithOrigins("http://localhost:8080", "http://127.0.0.1:8080").AllowAnyHeader().AllowAnyMethod());
+});
+
 //auth
 builder.Services.AddAuthentication(options =>
 {
