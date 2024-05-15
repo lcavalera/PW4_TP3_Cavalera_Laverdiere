@@ -26,6 +26,8 @@ namespace Events.Api.BusinessLogic.Classes
 
         public async Task<IEnumerable<EvenementDTO>> ObtenirTout()
         {
+            List<EvenementDTO> evenements = _mapper.Map<List<EvenementDTO>>(await _evenementsRepository.ListAsync());
+
             return _mapper.Map<List<EvenementDTO>>(await _evenementsRepository.ListAsync());
         }
 

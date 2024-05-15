@@ -18,7 +18,18 @@ export default createStore({
   },
   actions: {
     async getEvenementsApi(context){
-      return await httpclient.get('Evenements', {params: {filtre: this.state.filtre, pageIndex: this.state.pageIndex, pageCount: this.state.pageCount}})
+      return await httpclient.get('Evenements')
+      .then(reponse => {
+        context.commit('getEvenementsApi', reponse.data)
+        return reponse
+      })
+      .catch(error => {
+        console.log(error)
+        // return Promise.reject(error)
+      }) 
+    },
+    async filtrage(context, value){
+      return await httpclient.get('Evenements', {params: {filtre: value}})
       .then(reponse => {
         context.commit('getEvenementsApi', reponse.data)
         return reponse
@@ -27,7 +38,7 @@ export default createStore({
         console.log(error)
         return Promise.reject(error)
       }) 
-    },
+    }
   },
   modules: {
   }

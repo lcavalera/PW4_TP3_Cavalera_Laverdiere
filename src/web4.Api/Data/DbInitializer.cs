@@ -1,4 +1,5 @@
 ﻿using Events.Api.BusinessLogic;
+using Events.Api.BusinessLogic.Classes;
 using Events.Api.Entites;
 using System.Diagnostics;
 
@@ -34,15 +35,14 @@ namespace Events.Api.Data
 };
 
             context.Categories.AddRange(categories);
-
             var evenements = new Evenement[]
 {
-                new Evenement { Titre="Pentathlon des neiges", Description="Événement de plein air hivernal", Adresse="Plaines d'Abraham", DateDebut=new DateTime(2024,02,17), DateDeFin=new DateTime(2024,02,25), NomOrganisateur ="Ville de Québec", CategorieIds=[ 0, 3 ], Ville=villes[0], Prix=0},
-                new Evenement { Titre="ONF Live in Canada", Description="Concert", Adresse="Rialto Theatre, 5723 Avenue du Parc", DateDebut=new DateTime(2024,03,03), DateDeFin=new DateTime(2024,03,03), NomOrganisateur ="J&B Entertainment", CategorieIds=[ 1, 2 ], Ville=villes[1], Prix=60},
-                new Evenement { Titre="Ingrid St‑Pierre", Description="Concert seul au piano", Adresse="Grand Théâtre de Québec, 269 Bd René-Lévesque E", DateDebut=new DateTime(2024,02,17), DateDeFin=new DateTime(2024,02,20), NomOrganisateur ="Grand Théâtre Québec", CategorieIds=[ 2 ], Ville=villes[0], Prix=50},
-                new Evenement { Titre="Great Ice! Sled Dog Rides", Description="Promenades en chiens de traîneau", Adresse="Shore Acres, 237 Shore Acres Drive North Hero", DateDebut=new DateTime(2024,02,16), DateDeFin=new DateTime(2024,02,16), NomOrganisateur ="Great Ice", CategorieIds=[ 0, 3 ], Ville=villes[3], Prix=13},
-                new Evenement { Titre="Basketball - Concordia vs UQAM", Description="Dernier match à domicile à la saison régulière!", Adresse="Centre sportif de l'UQAM, 1212 rue Sanguinet", DateDebut=new DateTime(2024,02,24), DateDeFin=new DateTime(2024,02,24), NomOrganisateur ="Citadins de l'UQAM", CategorieIds=[ 0 ], Ville=villes[1]},
-                new Evenement { Titre="Billy Tellier", Description="Souper spectacle d'humour", Adresse="Centre Maillet, 12 Ben-Martin Avenue", DateDebut=new DateTime(2024,05,03), DateDeFin=new DateTime(2024,05,05), NomOrganisateur ="Levée de fonds", CategorieIds=[ 2, 4 ], Ville=villes[2]}
+                new Evenement { Titre="Pentathlon des neiges", Description="Événement de plein air hivernal", Adresse="Plaines d'Abraham", DateDebut=new DateTime(2024,02,17), DateDeFin=new DateTime(2024,02,25), NomOrganisateur ="Ville de Québec", CategorieIds=[ 0, 3 ], Categories=["Sport", "Festival"], ParticipationIds=[ 0, 2, 3, 4, 6], Ville=villes[0], VilleNom="Québec", Prix=0},
+                new Evenement { Titre="ONF Live in Canada", Description="Concert", Adresse="Rialto Theatre, 5723 Avenue du Parc", DateDebut=new DateTime(2024,03,03), DateDeFin=new DateTime(2024,03,03), NomOrganisateur ="J&B Entertainment", CategorieIds=[ 1, 2 ], Categories=["Spectacle", "Musique"], ParticipationIds=[ 1, 3, 4, 7], Ville=villes[1],  VilleNom="Montreal", Prix=60},
+                new Evenement { Titre="Ingrid St‑Pierre", Description="Concert seul au piano", Adresse="Grand Théâtre de Québec, 269 Bd René-Lévesque E", DateDebut=new DateTime(2024,02,17), DateDeFin=new DateTime(2024,02,20), NomOrganisateur ="Grand Théâtre Québec", CategorieIds=[ 2 ], Categories=["Musique"], ParticipationIds=[ 1, 4, 5], Ville=villes[0], VilleNom="Québec", Prix=50},
+                new Evenement { Titre="Great Ice! Sled Dog Rides", Description="Promenades en chiens de traîneau", Adresse="Shore Acres, 237 Shore Acres Drive North Hero", DateDebut=new DateTime(2024,02,16), DateDeFin=new DateTime(2024,02,16), NomOrganisateur ="Great Ice", CategorieIds=[ 0, 3 ], Categories=["Sport", "Festival"], ParticipationIds=[ 0, 2, 6], Ville=villes[3], VilleNom="Sherbrooke", Prix=13},
+                new Evenement { Titre="Basketball - Concordia vs UQAM", Description="Dernier match à domicile à la saison régulière!", Adresse="Centre sportif de l'UQAM, 1212 rue Sanguinet", DateDebut=new DateTime(2024,02,24), DateDeFin=new DateTime(2024,02,24), NomOrganisateur ="Citadins de l'UQAM", CategorieIds=[ 0 ], Categories=["Sport"], ParticipationIds=[ 3, 4, 6, 7], Ville=villes[1], VilleNom="Montreal"},
+                new Evenement { Titre="Billy Tellier", Description="Souper spectacle d'humour", Adresse="Centre Maillet, 12 Ben-Martin Avenue", DateDebut=new DateTime(2024,05,03), DateDeFin=new DateTime(2024,05,05), NomOrganisateur ="Levée de fonds", CategorieIds=[ 2, 4 ], Categories=["Musique", "Theatre"],  ParticipationIds=[ 0, 1, 2, 3, 4, 5, 6], Ville=villes[2], VilleNom="Rivière-du-Loup",}
 };
 
             context.Evenements.AddRange(evenements);

@@ -42,7 +42,7 @@ namespace Events.Api.Controllers
 
             if(filtre != null)
             {
-                evenements = evenements.Where(e => e.Titre.Contains(filtre) || e.Description.Contains(filtre)).ToList();
+                evenements = evenements.Where(e => e.Titre.ToLower().Contains(filtre.ToLower()) || e.Description.ToLower().Contains(filtre.ToLower())).ToList();
             }
 
             return Ok(evenements.OrderBy(e=> e.DateDebut).Skip((pageIndex - 1) * pageCount).Take(pageCount));

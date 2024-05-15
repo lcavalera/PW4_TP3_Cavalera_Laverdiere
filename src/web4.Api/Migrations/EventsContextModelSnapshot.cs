@@ -18,7 +18,7 @@ namespace Events.Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.1")
+                .HasAnnotation("ProductVersion", "8.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -37,7 +37,7 @@ namespace Events.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories", (string)null);
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Events.Api.Entites.Evenement", b =>
@@ -56,6 +56,9 @@ namespace Events.Api.Migrations
                         .IsRequired()
                         .HasColumnType("integer[]");
 
+                    b.Property<List<string>>("Categories")
+                        .HasColumnType("text[]");
+
                     b.Property<DateTime>("DateDeFin")
                         .HasColumnType("timestamp without time zone");
 
@@ -70,6 +73,10 @@ namespace Events.Api.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<List<int>>("ParticipationIds")
+                        .IsRequired()
+                        .HasColumnType("integer[]");
+
                     b.Property<int>("Prix")
                         .HasColumnType("integer");
 
@@ -80,11 +87,15 @@ namespace Events.Api.Migrations
                     b.Property<int>("VilleId")
                         .HasColumnType("integer");
 
+                    b.Property<string>("VilleNom")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.HasKey("Id");
 
                     b.HasIndex("VilleId");
 
-                    b.ToTable("Evenements", (string)null);
+                    b.ToTable("Evenements");
                 });
 
             modelBuilder.Entity("Events.Api.Entites.Participation", b =>
@@ -120,7 +131,7 @@ namespace Events.Api.Migrations
 
                     b.HasIndex("EvenementID");
 
-                    b.ToTable("Participations", (string)null);
+                    b.ToTable("Participations");
                 });
 
             modelBuilder.Entity("Events.Api.Entites.Ville", b =>
@@ -140,18 +151,16 @@ namespace Events.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Villes", (string)null);
+                    b.ToTable("Villes");
                 });
 
             modelBuilder.Entity("Events.Api.Entites.Evenement", b =>
                 {
-                    b.HasOne("Events.Api.Entites.Ville", "Ville")
-                        .WithMany()
+                    b.HasOne("Events.Api.Entites.Ville", null)
+                        .WithMany("Evenements")
                         .HasForeignKey("VilleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Ville");
                 });
 
             modelBuilder.Entity("Events.Api.Entites.Participation", b =>
@@ -168,6 +177,11 @@ namespace Events.Api.Migrations
             modelBuilder.Entity("Events.Api.Entites.Evenement", b =>
                 {
                     b.Navigation("Participations");
+                });
+
+            modelBuilder.Entity("Events.Api.Entites.Ville", b =>
+                {
+                    b.Navigation("Evenements");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,6 +1,6 @@
 <template>
     <div class="accueil">  
-        <h3>{{ titre }}</h3><br>
+        <h2>{{ titre }}</h2><br>
         <input type="text" placeholder="filtrer par titre" v-model="filter" /><br>
         <table>
             <thead>
@@ -13,17 +13,17 @@
                 <th>Action</th>
             </thead>
             <tbody>
-                <tr :class="{ done: item.done }" v-for="(item, index) in evenements" :key="index">
+                <tr v-for="(item, index) in evenements" :key="index">
                     <td>{{ item.titre }}</td>
-                    <td>{{ item.ville }}</td>
-                    <td>{{ item.participations }}</td>
+                    <td>{{ item.villeNom }}</td>
+                    <td>{{ item.participationIds.length }}</td>
                     <td>{{ item.prix }}</td>
-                    <td>{{ item.categorieIds }}</td>
+                    <td><ul v-for="(item, index) in item.categories" :key="index">{{ item }}</ul></td>
                     <td>{{ item.dateDebut }}</td>
                     <td>
+                        <button @click="$router.push(`/evenements/${item.id}`)">detail</button>
+                        <button @click="$router.push(`/evenements/${item.id}/participer`)">participer</button>
                         <button @click="deleteTodo(index)"><i class="fa fa-trash"></i></button>
-                        <button @click="$router.push(`/evenements/${item.id}/edit`)">edit</button>
-                        <button @click="$router.push(`/evenements/${item.id}/view`)">view</button>
                     </td>
                 </tr>
             </tbody>
@@ -34,7 +34,7 @@
 </template>
   
 <script>
-  import { mapState, mapGetters, mapActions } from 'vuex'
+  import { mapState, mapActions } from 'vuex'
 
   export default {
     name: 'EvenementsList',
@@ -48,16 +48,21 @@
     },
     created() {
       this.getEvenementsApi()
-    // .catch((error) => this.$toast.error(`Erreur lors de la comunication avec le serveur lors du chargement de la liste des évènements. (Error: ${error.response == null ? error.code : error.response.status})`))
+    .catch((error) => this.$toast.error(`Erreur lors de la comunication avec le serveur lors du chargement de la liste des évènements. (Error: ${error.response == null ? error.code : error.response.status})`))
+    },
+    watch: {
+      filter(value){
+      this.filtrage(value);
+      }
     },
     methods: {
       ...mapActions({
-        getEvenementsApi: 'getEvenementsApi'
+        getEvenementsApi: 'getEvenementsApi',
+        filtrage: 'filtrage'
       })
     },
     computed: {
-      ...mapState({ evenements: 'evenements'}),
-      ...mapGetters({})
+      ...mapState({ evenements: 'evenements'})
     }
   }
 </script>

@@ -28,6 +28,24 @@ namespace Events.Api.Migrations
                 table: "Evenements",
                 type: "integer[]",
                 nullable: false);
+
+            migrationBuilder.AddColumn<List<int>>(
+                name: "ParticipationIds",
+                table: "Evenements",
+                type: "integer[]",
+                nullable: true);
+
+            migrationBuilder.AddColumn<List<int>>(
+                name: "VilleNom",
+                table: "Evenements",
+                type: "text",
+                nullable: false);
+
+            migrationBuilder.AddColumn<List<int>>(
+                name: "Categories",
+                table: "Evenements",
+                type: "text[]",
+                nullable: false);
         }
 
         /// <inheritdoc />

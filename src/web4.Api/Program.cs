@@ -84,21 +84,21 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: "MyAllowSpecificOrigins", policy => policy.WithOrigins("http://localhost:8080", "http://127.0.0.1:8080").AllowAnyHeader().AllowAnyMethod());
 });
 
-//auth
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultScheme = "Bearer";
+////auth
+//builder.Services.AddAuthentication(options =>
+//{
+//    options.DefaultScheme = "Bearer";
 
-}).AddJwtBearer("Bearer", options =>
-{
-    options.Authority = "https://localhost:5001";
-    options.Audience = "Web2Api";
-    options.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateAudience = true
-    };
-});
+//}).AddJwtBearer("Bearer", options =>
+//{
+//    options.Authority = "https://localhost:5001";
+//    options.Audience = "Web2Api";
+//    options.TokenValidationParameters.ValidTypes = new[] { "at+jwt" };
+//    options.TokenValidationParameters = new TokenValidationParameters
+//    {
+//        ValidateAudience = true
+//    };
+//});
 
 builder.Services.AddAutoMapper(c => c.AddProfile<MappingProfile>());
 
@@ -135,10 +135,13 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseCors("MyAllowSpecificOrigins");
+//app.UseAuthentication();
+//app.UseAuthorization();
 
 app.MapControllers();
+
+
 
 app.CreateDbIfNotExists();
 

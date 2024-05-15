@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Events.Api.Entites.DTO;
+using Microsoft.EntityFrameworkCore.Update.Internal;
 
 namespace Events.Api.Entites.Profiles
 {
