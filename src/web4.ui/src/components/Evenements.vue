@@ -1,7 +1,8 @@
 <template>
     <div class="accueil">  
         <h2>{{ titre }}</h2><br>
-        <input type="text" placeholder="filtrer par titre" v-model="filter" /><br>
+        <label>Filtrer les évènements: </label>
+        <input type="text" placeholder="filtrer par titre ou description" v-model="filter" /><br>
         <table>
             <thead>
                 <th>Titre</th>

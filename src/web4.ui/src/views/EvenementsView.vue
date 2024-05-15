@@ -1,10 +1,12 @@
 <template>
+  <BaseLayout>
     <div class="evenements">
       <Evenements titre="Liste des Évènements"/>
     </div>
-  </template>
+  </BaseLayout>
+</template>
   
-  <script>
+<script>
   // @ is an alias to /src
 import Evenements from '../components/Evenements.vue';
   
@@ -14,5 +16,5 @@ import Evenements from '../components/Evenements.vue';
       Evenements
     }
   }
-  </script>
+</script>
   
