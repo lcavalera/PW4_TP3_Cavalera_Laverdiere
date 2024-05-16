@@ -29,7 +29,7 @@ export default createStore({
       }) 
     },
     async filtrage(context, value){
-      return await httpclient.get('Evenements', {params: {filtre: value}})
+      return await httpclient.get('Evenements', {params: {filtre: value, pageIndex: this.state.pageIndex, pageCount: this.state.pageCount}})
       .then(reponse => {
         context.commit('getEvenementsApi', reponse.data)
         return reponse

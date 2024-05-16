@@ -7,15 +7,15 @@
 </BaseLayout>
 </template>
   
-  <script>
+<script>
   // @ is an alias to /src
 import Accueil from '../components/Accueil.vue';
   
-  export default {
-    name: 'AccueilView',
-    components: {
-      Accueil
-    }
+export default {
+  name: 'AccueilView',
+  components: {
+    Accueil
   }
-  </script>
+}
+</script>
   
