@@ -70,10 +70,6 @@
   
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* .done {
-  background: rgb(7, 240, 7);
-} */
-
 button,
 [aria-label] {
   cursor: pointer;
