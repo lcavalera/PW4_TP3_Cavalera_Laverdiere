@@ -1,7 +1,7 @@
 <template>
 <BaseLayout>
     <div class="statistique">
-        <Statistique titre="“Statistique de la plateforme"/>
+        <Statistique titre="Statistique de la plateforme"/>
     </div>
 </BaseLayout>
 </template>
