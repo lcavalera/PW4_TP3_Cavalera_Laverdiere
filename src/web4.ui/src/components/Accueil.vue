@@ -20,8 +20,8 @@
             Luca Cavalera & Frédéric Laverdière
         </p>
         <ul>
-            <li><a href="https://www.linkedin.com/in/luca-cavalera/" target="_blank"><img src="https://media.licdn.com/dms/image/D4E35AQFRb5SMF280Hw/profile-framedphoto-shrink_200_200/0/1685318454611?e=1716138000&v=beta&t=23sBNtd101D5C_TYAQAIPlQzSwU8z0Co_WmeME9XII4" alt="Luca Cavalera"></a></li>
-            <li><a href="https://www.linkedin.com/in/fr%C3%A9d%C3%A9ric-laverdi%C3%A8re-0b809499/" target="_blank"><img src="https://media.licdn.com/dms/image/C5603AQFeM5FNxbCUGA/profile-displayphoto-shrink_800_800/0/1634737679875?e=1721260800&v=beta&t=ZU_jUkYYk5XDoOodSct8Ky7jPkNk8neMAvkbPP20auc" alt="Frédéric Laverdière"></a></li>
+            <li><a href="https://www.linkedin.com/in/luca-cavalera/" target="_blank"><img src="../../public/1685318454611.jpg" alt="Luca Cavalera"></a></li>
+            <li><a href="https://www.linkedin.com/in/fr%C3%A9d%C3%A9ric-laverdi%C3%A8re-0b809499/" target="_blank"><img src="../../public/1634737679875.jpg" alt="Frédéric Laverdière"></a></li>
         </ul>
     </section>
   </template>
