@@ -62,5 +62,15 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+router.beforeEach(async (to, from) => {
+  if(!isAuthenticated && to.name !== 'Login')
+    {
+      return {name: 'Login'}
+    }
+  else
+  {
+    //next() // ??
+  }
+})
 mainOidc.useRouter(router);
 export default router

@@ -1,11 +1,13 @@
 ﻿using Events.Api.BusinessLogic.Interfaces;
 using Events.Api.Entites.DTO;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Events.Api.Controllers
 {
+    //[Authorize(Policy = "RequireManager")]
     [Route("api/[controller]")]
     [ApiController]
     public class StatistiquesController(IStatistiquesBL statistiquesBL) : ControllerBase
