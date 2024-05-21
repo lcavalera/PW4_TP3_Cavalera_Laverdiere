@@ -8,11 +8,11 @@ const mainOidc = createOidcAuth('vuejs',
     appRootUrl,
         {
             authority: 'https://localhost:5001/',
-            client_id: 'web2_ui',
+            client_id: 'web4_ui',
             response_type: 'code',
-            scope: 'openid profile web2ApiScope'
+            scope: 'web2ApiScope' //openid profile web2ApiScope
         },
     console,
-    LogLevel.Debug
+    LogLevel.Debug  
 );
 export default mainOidc

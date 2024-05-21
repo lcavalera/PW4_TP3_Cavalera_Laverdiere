@@ -11,4 +11,14 @@ const httpclient = axios.create({
 
 httpclient.defaults.headers.post['Content-Type'] = 'application/json'
 
+httpclient.interceptors.request.use(request => {
+    const account = mainOidc.user;
+    const isLoggedIn = mainOidc.isAuthenticated;
+    const isApiUrl = request.url.startsWith('/api')//prefix de votre api
+    if (isLoggedIn && isApiUrl) {
+   Request.headers.common.Authorization = `Bearer
+   ${account.access_token}`;
+    }
+    return request;
+   });
 export default httpclient

@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AccueilView from '@/views/AccueilView.vue'
+import mainOidc from '../api/authClient.js'
+
 
 const routes = [
   {
@@ -60,5 +62,5 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-
+mainOidc.useRouter(router);
 export default router
