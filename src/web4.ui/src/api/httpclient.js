@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const httpclient = axios.create({
-    baseURL: 'http://localhost:5272/api',
+    baseURL: 'https://localhost:7132/api', //5272
     timeout: 3000,
     // auth: {
     //     username: 'identifiant',
