@@ -21,14 +21,17 @@ import mainOidc from '@/api/authClient'
     },
     data(){
       return{
-        nom: mainOidc.userProfile.family_name,
-        role: ''
+        nom: mainOidc.userProfile.name,
+        role: this.parseJwt(mainOidc.accessToken).role
       }
     },
     methods:{
       signOut(){
         mainOidc.signOut();
       },
+      parseJwt(token) {
+                return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+            }
     }
   }
 </script>
