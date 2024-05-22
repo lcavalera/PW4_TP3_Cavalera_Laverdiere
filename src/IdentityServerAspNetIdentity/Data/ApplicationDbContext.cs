@@ -33,6 +33,7 @@ namespace IdentityServerAspNetIdentity.Data
                 NormalizedEmail = "MANAGER@CEGEPLIMOILOU.CA",
                 SecurityStamp = Guid.NewGuid().ToString(),
                 EmailConfirmed = true,
+                IsManager = true
             };
 
             var admin = new ApplicationUser
@@ -44,6 +45,7 @@ namespace IdentityServerAspNetIdentity.Data
                 NormalizedEmail = "ADMIN@CEGEPLIMOILOU.CA",
                 SecurityStamp = Guid.NewGuid().ToString(),
                 EmailConfirmed = true,
+                IsAdmin = true
             };
 
             var hasher = new PasswordHasher<ApplicationUser>();

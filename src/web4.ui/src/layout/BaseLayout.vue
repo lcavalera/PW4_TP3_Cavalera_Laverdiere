@@ -18,6 +18,9 @@
                 <div v-if="!isLoggedIn()" id="login">
                     <router-link to="/login">Login</router-link>
                 </div>
+                <div>
+                    {{ displaydevInfo() }}
+                </div>
 
             </slot>
         </header><br>
@@ -36,7 +39,7 @@ import mainOidc from '@/api/authClient';
     export default {
         methods:{
             isAdmin(){
-                if(mainOidc.isAuthenticated){
+                if(mainOidc.isAuthenticated && mainOidc.userProfile.isAdmin){
                     return true;
                 }else{
                     return false;
@@ -51,6 +54,9 @@ import mainOidc from '@/api/authClient';
             },
             displayProfileName(){
                 return `Profile(${mainOidc.userProfile.name})`
+            },
+            displaydevInfo(){
+                return `Profile(${mainOidc.userProfile.IsAdmin})`
             }
         }
     }    
