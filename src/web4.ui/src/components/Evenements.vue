@@ -63,12 +63,18 @@ import { mapState, mapActions } from 'vuex'
         filtrage: 'filtrage'
       }),
       isManager(){
-        if(mainOidc.isAuthenticated && mainOidc.accessToken.includes("manager")){
-          return true;
+        if(mainOidc.isAuthenticated){
+          if(this.parseJwt(mainOidc.accessToken).role == 'manager'){
+              return true;
+        }
+        return false;
         }else{
           return false;
         }
-      }
+      },
+      parseJwt(token) {
+                return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+            }
     },
     computed: {
       ...mapState({ evenements: 'evenements'})
