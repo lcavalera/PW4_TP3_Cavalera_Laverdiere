@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import AccueilView from '@/views/AccueilView.vue'
-import mainOidc from '../api/authClient.js'
+import mainOidc from '@/api/authClient.js'
 
 
 const routes = [
@@ -43,6 +43,10 @@ const routes = [
   {
     path: '/statistique',
     name: 'statistique',
+    meta: {
+      authName: mainOidc.authName
+      },
+     
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -51,6 +55,9 @@ const routes = [
   {
     path: '/login',
     name: 'login',
+    meta: {
+      authName: mainOidc.authName
+      },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -62,15 +69,6 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-// router.beforeEach(async (to, from) => {
-//   if(!isAuthenticated && to.name !== 'Login')
-//     {
-//       return {name: 'Login'}
-//     }
-//   else
-//   {
-//     //next() // ??
-//   }
-// })
-mainOidc.useRouter(router);
+
+ mainOidc.useRouter(router);
 export default router

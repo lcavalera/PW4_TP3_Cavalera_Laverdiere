@@ -2,20 +2,33 @@
     <section class="login">
         <h2>{{ titre }}</h2>
         <form>
-          <label for="">Nom d'usager </label>
+          <label for="nom">Nom d'usager </label>
           <input type="text" disabled><br><br>
-          <label for="">Rôles </label>
+          <label for="role">Rôles </label>
           <input type="text" disabled>
         </form><br>
-        <button>Déconnexion</button>
+        <button :click="signOut()">Déconnexion</button>
     </section>
 </template>
 
 <script>
+import mainOidc from '@/api/authClient'
+
  export default {
     name: 'LoginPage',
     props: {
       titre: String
+    },
+    data(){
+      return{
+        nom: mainOidc.userProfile.family_name,
+        role: mainOidc.accessToken
+      }
+    },
+    methods:{
+      signOut(){
+        mainOidc.signOut();
+      },
     }
   }
 </script>

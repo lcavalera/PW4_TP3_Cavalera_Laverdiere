@@ -10,7 +10,7 @@ const mainOidc = createOidcAuth('vuejs',
             authority: 'https://localhost:5001/',
             client_id: 'web4_ui',
             response_type: 'code',
-            scope: 'web2ApiScope' //openid profile web2ApiScope
+            scope: 'openid profile web2ApiScope' //web2ApiScope
         },
     console,
     LogLevel.Debug  
