@@ -43,9 +43,6 @@ const routes = [
   {
     path: '/statistique',
     name: 'statistique',
-    beforeEnter(){
-
-    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -65,15 +62,15 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
-//router.beforeEach(async (to) => {
- // if(!isAuthenticated && to.name !== 'Login')
-   // {
-     // return {name: 'Login'}
-    //}
-  //else
-  //{
-    //next() // ??
-  //}
-//})
+// router.beforeEach(async (to, from) => {
+//   if(!isAuthenticated && to.name !== 'Login')
+//     {
+//       return {name: 'Login'}
+//     }
+//   else
+//   {
+//     //next() // ??
+//   }
+// })
 mainOidc.useRouter(router);
 export default router

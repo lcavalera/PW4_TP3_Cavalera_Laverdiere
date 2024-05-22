@@ -1,5 +1,5 @@
 import axios from 'axios';
-import mainOidc from '../api/authClient';
+import mainOidc from './authClient';
 
 const httpclient = axios.create({
     baseURL: 'https://localhost:7132/api', //5272
