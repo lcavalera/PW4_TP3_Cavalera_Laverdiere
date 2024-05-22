@@ -32,9 +32,9 @@
 <script>
 import mainOidc from '@/api/authClient';
 import { Buffer } from 'buffer';
-
 // @ts-ignore
 window.Buffer = Buffer;
+
     export default {
         methods:{
             isAdmin(){
