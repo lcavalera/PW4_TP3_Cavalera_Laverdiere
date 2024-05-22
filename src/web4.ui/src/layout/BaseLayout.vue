@@ -13,11 +13,12 @@
                     <router-link to="/statistique">Statistique</router-link>
                 </div>
                 <div v-if="isLoggedIn()" id="login">
-                    <label>{{ displayProfileName() }}</label>
+                    {{ displayProfileName() }}
                 </div>
-                <div v-else-if="!isLoggedIn()" id="login">
+                <div v-if="!isLoggedIn()" id="login">
                     <router-link to="/login">Login</router-link>
                 </div>
+
             </slot>
         </header><br>
         <main>
@@ -35,7 +36,7 @@ import mainOidc from '@/api/authClient';
     export default {
         methods:{
             isAdmin(){
-                if(mainOidc.isAuthenticated && mainOidc.accessToken.includes('admin')){
+                if(mainOidc.isAuthenticated){
                     return true;
                 }else{
                     return false;

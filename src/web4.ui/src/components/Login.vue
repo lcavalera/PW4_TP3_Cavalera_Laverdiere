@@ -7,7 +7,7 @@
           <label for="role">Rôles </label>
           <input type="text" disabled>
         </form><br>
-        <button :click="signOut()">Déconnexion</button>
+        <button>Déconnexion</button>
     </section>
 </template>
 
