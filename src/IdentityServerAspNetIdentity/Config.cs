@@ -15,14 +15,21 @@ namespace IdentityServerAspNetIdentity
         public static IEnumerable<IdentityResource> IdentityResources =>
                    new IdentityResource[]
                    {
-                new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
- 
+                    new IdentityResources.OpenId(),
+                    new IdentityResources.Profile(),
+            
                    };
         public static IEnumerable<ApiResource> ApiResources =>
             new ApiResource[]
             {
                 new ApiResource("Web2Api", "Events.API")
+                {
+                    Scopes =
+                    {
+                        "web2ApiScope"
+                    }
+                },
+                new ApiResource("WEB4.UI", "Events.API")
                 {
                     Scopes =
                     {
@@ -74,9 +81,13 @@ namespace IdentityServerAspNetIdentity
                          },
                      PostLogoutRedirectUris = {"http://localhost:8080/" },
                      AllowedCorsOrigins = {"http://localhost:8080"},
-                     AllowedScopes = { "web2ApiScope",
-                    IdentityServerConstants.StandardScopes.OpenId,
-                    IdentityServerConstants.StandardScopes.Profile,}
+                     AllowedScopes = 
+                    { 
+                        "web2ApiScope",
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                    
+                    }
                  },
             };
     }

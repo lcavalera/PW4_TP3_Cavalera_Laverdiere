@@ -4,6 +4,8 @@ using IdentityServerAspNetIdentity.Models;
 using Microsoft.AspNetCore.Identity;
 using System.Reflection.Emit;
 using System;
+using IdentityModel;
+using System.Security.Claims;
 
 namespace IdentityServerAspNetIdentity.Data
 {
@@ -35,7 +37,8 @@ namespace IdentityServerAspNetIdentity.Data
                 EmailConfirmed = true,
                 IsManager = true
             };
-
+       
+              
             var admin = new ApplicationUser
             {
                 Id = "f389e134-488c-4fd5-b56c-9fb9f0b3b7f3",
@@ -51,14 +54,13 @@ namespace IdentityServerAspNetIdentity.Data
             var hasher = new PasswordHasher<ApplicationUser>();
             admin.PasswordHash = hasher.HashPassword(admin, "Admin123!");
             manager.PasswordHash = hasher.HashPassword(manager, "Manager123!");
-
             builder.Entity<IdentityRole>().HasData(managerRole);
             builder.Entity<IdentityRole>().HasData(adminRole);
             builder.Entity<ApplicationUser>().HasData(manager);
             builder.Entity<ApplicationUser>().HasData(admin);
-
+            builder.Entity<IdentityUserClaim<string>>().HasData(new IdentityUserClaim<string> { Id=55, UserId = "f389e134-488c-4fd5-b56c-9fb9f0b3b7f3", ClaimType = ClaimTypes.Role, ClaimValue = "admin" });
             builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string> { UserId = admin.Id, RoleId = adminRole.Id });
-            builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string> { UserId = manager.Id, RoleId = managerRole.Id });
+            //builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string> {  UserId = manager.Id, RoleId = managerRole.Id });
         }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
     }

@@ -35,11 +35,14 @@
     </template>
 <script>
 import mainOidc from '@/api/authClient';
+import { Buffer } from 'buffer';
 
+// @ts-ignore
+window.Buffer = Buffer;
     export default {
         methods:{
             isAdmin(){
-                if(mainOidc.isAuthenticated && mainOidc.userProfile.isAdmin){
+                if(mainOidc.isAuthenticated){
                     return true;
                 }else{
                     return false;
@@ -56,7 +59,10 @@ import mainOidc from '@/api/authClient';
                 return `Profile(${mainOidc.userProfile.name})`
             },
             displaydevInfo(){
-                return `Profile(${mainOidc.userProfile.IsAdmin})`
+                return `${this.parseJwt(mainOidc.accessToken).role}`
+            },
+            parseJwt(token) {
+                return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
             }
         }
     }    
