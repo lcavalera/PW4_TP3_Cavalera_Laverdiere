@@ -3,9 +3,9 @@
         <h2>{{ titre }}</h2>
         <form>
           <label for="nom">Nom d'usager </label>
-          <input type="text" disabled><br><br>
+          <input v-model="nom" type="text" disabled><br><br>
           <label for="role">Rôles </label>
-          <input type="text" disabled>
+          <input v-model="role" type="text" disabled>
         </form><br>
         <button v-on:click="signOut()">Déconnexion</button>
     </section>
