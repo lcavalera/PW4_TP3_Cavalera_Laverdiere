@@ -1,16 +1,16 @@
 <template>
-  <form class="evenement">
-  <label>Titre: </label><input id="titre" type="text" v-model="evenement.titre">
-  <label>Date Debut: </label><input id="titre" type="text" v-model="evenement.dateDebut">
-  <label>Date Fin: </label><input id="titre" type="text" v-model="evenement.dateDeFin">
-  <label>Desctiption: </label><textarea id="titre" type="text" v-model="evenement.description"></textarea>
-  <label>Adresse: </label><input id="titre" type="text" v-model="evenement.adresse">
-  <label>Nom Organisateur: </label><input id="titre" type="text" v-model="evenement.nomOrganisateur">
-  <label>Prix: </label><input id="titre" type="text" v-model="evenement.prix">
-  <!-- <label>Categories: </label><input v-for="(item, index) in evenement.categories" :key="index" id="titre" type="text" :value="item"> -->
-  <label>Ville: </label><input id="titre" type="text" v-model="evenement.villeNom">
-  <label>Ids participations: </label><input id="titre" type="text" v-model="evenement.participationIds">
-</form>
+  <div class="evenement">
+    <label>Titre: </label><input id="titre" type="text" v-model="evenement.titre" disabled>
+    <label>Date Debut: </label><input id="titre" type="text" v-model="evenement.dateDebut" disabled>
+    <label>Date Fin: </label><input id="titre" type="text" v-model="evenement.dateDeFin" disabled>
+  </div><br>
+  <h2>Remplir le formulaire pour participer à l'evenement</h2>
+<form class="form">
+  <label>Nom: </label><input id="titre" type="text" v-model="participation.nom"><br>
+  <label>Prenom: </label><input id="titre" type="text" v-model="participation.prenom"><br>
+  <label>Courriel: </label><input id="titre" type="text" v-model="participation.courriel"><br>
+  <label>Nombre de places: </label><input id="titre" type="text" v-model="participation.nombrePlaces">
+</form><br>
 <button>Soumettre</button>
 </template>
   
@@ -24,7 +24,8 @@
     },
     data() {
       return {
-        evenement: {}
+        evenement: {},
+        participation: {}
       };
     },
     methods: {
@@ -56,5 +57,14 @@
     justify-items: center;
     font-weight: bold;
     text-align: left;
+  }
+  .form{
+    text-align: left;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    width: 500px;
+  }
+  .form input{
+    width: 100%;
   }
   </style>
