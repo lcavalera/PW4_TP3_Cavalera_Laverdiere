@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Events.Api.Controllers
 {
-    //[Authorize(Policy = "RequireManager")]
     [Route("api/[controller]")]
     [ApiController]
     public class StatistiquesController(IStatistiquesBL statistiquesBL) : ControllerBase

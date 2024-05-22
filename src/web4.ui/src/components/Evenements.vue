@@ -24,7 +24,7 @@
                     <td>
                         <button @click="$router.push(`/evenements/${item.id}`)">detail</button>
                         <button @click="$router.push(`/evenements/${item.id}/participer`)">participer</button>
-                        <button @click="deleteTodo(index)"><i class="fa fa-trash"></i></button>
+                        <button v-if="isManager()" @click="deleteTodo(index)"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>
             </tbody>
@@ -35,7 +35,8 @@
 </template>
   
 <script>
-  import { mapState, mapActions } from 'vuex'
+  import mainOidc from '@/api/authClient';
+import { mapState, mapActions } from 'vuex'
 
   export default {
     name: 'EvenementsList',
@@ -60,7 +61,14 @@
       ...mapActions({
         getEvenementsApi: 'getEvenementsApi',
         filtrage: 'filtrage'
-      })
+      }),
+      isManager(){
+        if(mainOidc.isAuthenticated && mainOidc.accessToken.includes("manager")){
+          return true;
+        }else{
+          return false;
+        }
+      }
     },
     computed: {
       ...mapState({ evenements: 'evenements'})

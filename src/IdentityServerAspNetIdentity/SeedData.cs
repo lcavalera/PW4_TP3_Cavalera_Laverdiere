@@ -36,6 +36,38 @@ namespace IdentityServerAspNetIdentity
                     context.Database.Migrate();
 
                     var userMgr = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                    var manager = userMgr.FindByNameAsync("Bill").Result;
+                    if (manager == null)
+                    {
+                        manager = new ApplicationUser
+                        {
+                            UserName = "Bill",
+                            Email = "Bill@email.com",
+                            EmailConfirmed = true,
+                        };
+                        var result = userMgr.CreateAsync(manager, "Pass123$").Result;
+                        if (!result.Succeeded)
+                        {
+                            throw new Exception(result.Errors.First().Description);
+                        }
+
+                        result = userMgr.AddClaimsAsync(manager, new Claim[]{
+                            new Claim(JwtClaimTypes.Name, "Bill Man"),
+                            new Claim(JwtClaimTypes.GivenName, "Bill"),
+                            new Claim(JwtClaimTypes.FamilyName, "Man"),
+                            new Claim(JwtClaimTypes.Role, "Manager"),
+                            new Claim(JwtClaimTypes.WebSite, "http://Bill.com"),
+                        }).Result;
+                        if (!result.Succeeded)
+                        {
+                            throw new Exception(result.Errors.First().Description);
+                        }
+                        Log.Debug("Bill created");
+                    }
+                    else
+                    {
+                        Log.Debug("Bill already exists");
+                    }
                     var alice = userMgr.FindByNameAsync("alice").Result;
                     if (alice == null)
                     {

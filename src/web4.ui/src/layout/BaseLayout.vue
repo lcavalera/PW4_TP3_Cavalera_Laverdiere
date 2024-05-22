@@ -9,13 +9,15 @@
                 <div>
                     <router-link to="/evenements">Évènements</router-link>
                 </div>
-                <div>
+                <div v-if="isAdmin()">
                     <router-link to="/statistique">Statistique</router-link>
                 </div>
-                <div id="login">
+                <div v-if="isLoggedIn()" id="login">
+                    <label>{{ displayProfileName() }}</label>
+                </div>
+                <div v-else-if="!isLoggedIn()" id="login">
                     <router-link to="/login">Login</router-link>
                 </div>
-    
             </slot>
         </header><br>
         <main>
@@ -27,7 +29,32 @@
       </div>
     
     </template>
-    
+<script>
+import mainOidc from '@/api/authClient';
+
+    export default {
+        methods:{
+            isAdmin(){
+                if(mainOidc.isAuthenticated && mainOidc.accessToken.includes('admin')){
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+            isLoggedIn(){
+                if(mainOidc.isAuthenticated){
+                    return true;
+                }else{
+                    return false;
+                }
+            },
+            displayProfileName(){
+                return `Profile(${mainOidc.userProfile.name})`
+            }
+        }
+    }    
+
+</script>
     <style scoped>
     #header{
         display: flexbox;
