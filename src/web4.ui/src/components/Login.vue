@@ -7,7 +7,7 @@
           <label for="role">Rôles </label>
           <input type="text" disabled>
         </form><br>
-        <button>Déconnexion</button>
+        <button v-on:click="signOut()">Déconnexion</button>
     </section>
 </template>
 
@@ -22,7 +22,7 @@ import mainOidc from '@/api/authClient'
     data(){
       return{
         nom: mainOidc.userProfile.family_name,
-        role: mainOidc.accessToken
+        role: ''
       }
     },
     methods:{
