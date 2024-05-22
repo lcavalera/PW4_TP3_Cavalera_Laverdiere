@@ -18,10 +18,6 @@
                 <div v-if="!isLoggedIn()" id="login">
                     <router-link to="/login">Login</router-link>
                 </div>
-                <div>
-                    {{ displaydevInfo() }}
-                </div>
-
             </slot>
         </header><br>
         <main>
@@ -43,7 +39,10 @@ window.Buffer = Buffer;
         methods:{
             isAdmin(){
                 if(mainOidc.isAuthenticated){
-                    return true;
+                    if(this.parseJwt(mainOidc.accessToken).role == 'admin'){
+                        return true;
+                    }
+                    return false;
                 }else{
                     return false;
                 }
@@ -58,8 +57,8 @@ window.Buffer = Buffer;
             displayProfileName(){
                 return `Profile(${mainOidc.userProfile.name})`
             },
-            displaydevInfo(){
-                return `${this.parseJwt(mainOidc.accessToken).role}`
+            affiche(table){
+                return table[1].role
             },
             parseJwt(token) {
                 return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
