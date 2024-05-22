@@ -2,7 +2,8 @@ import axios from 'axios';
 import mainOidc from './authClient';
 
 const httpclient = axios.create({
-    baseURL: 'https://localhost:7132/api', //5272
+    // baseURL: 'https://localhost:7132/api', //5272
+    baseURL: 'http://localhost:5272/api', //7132
     timeout: 3000,
     // auth: {
     //     username: 'identifiant',
