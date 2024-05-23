@@ -8,9 +8,10 @@ using System.Collections.Generic;
 
 namespace Events.Api.BusinessLogic.Classes
 {
-    public class ParticipationBL(IAsyncParticipationRepository participationRepo, IMapper mapper) : IParticipationBL
+    public class ParticipationBL(IAsyncParticipationRepository participationRepo, IAsyncRepositoryEvenements evenementsRepository, IMapper mapper) : IParticipationBL
     {
         private readonly IAsyncParticipationRepository _participationRepo = participationRepo;
+        private readonly IAsyncRepositoryEvenements _evenementsRepository = evenementsRepository;
         private readonly IMapper _mapper = mapper;
         public async Task Ajouter(ParticipationDTO demandeParticipation)
         {
@@ -25,6 +26,11 @@ namespace Events.Api.BusinessLogic.Classes
                 Prenom = demandeParticipation.Prenom,
                 NombrePlaces = demandeParticipation.NombrePlaces
             });
+
+            Evenement evenement = await _evenementsRepository.GetByIdAsync(demandeParticipation.EvenementID);
+            List<Participation> participations = (List<Participation>)await _participationRepo.ListAsync();
+            evenement.ParticipationIds.Add(participations.Select(p => p.Id).Max()+1);
+            await _evenementsRepository.EditAsync(evenement);
         }
 
         public async Task<List<ParticipationDTO>> ObtenirSelonEvenementId(int evenementId)

@@ -3,11 +3,11 @@
         <h2>{{ titre }}</h2>
         <form>
           <label for="nom">Nom d'usager </label>
-          <input type="text" disabled><br><br>
+          <input v-model="nom" type="text" disabled><br><br>
           <label for="role">Rôles </label>
-          <input type="text" disabled>
+          <input v-model="role" type="text" disabled>
         </form><br>
-        <button>Déconnexion</button>
+        <button @click="signOut">Déconnexion</button>
     </section>
 </template>
 
@@ -21,14 +21,17 @@ import mainOidc from '@/api/authClient'
     },
     data(){
       return{
-        nom: mainOidc.userProfile.family_name,
-        role: mainOidc.accessToken
+        nom: mainOidc.userProfile.name,
+        role: this.parseJwt(mainOidc.accessToken).role
       }
     },
     methods:{
       signOut(){
         mainOidc.signOut();
       },
+      parseJwt(token) {
+                return JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+            }
     }
   }
 </script>

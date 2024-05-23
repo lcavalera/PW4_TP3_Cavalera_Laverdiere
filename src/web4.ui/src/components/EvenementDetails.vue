@@ -15,27 +15,23 @@
 </template>
     
     <script>
-    import httpclient from '@/api/httpclient'
+    import { mapState, mapActions } from 'vuex'
     
     export default {
       name: "EvenementDetails",
       props: {
         titre: String,
       },
-      data() {
-        return {
-          evenement: {}
-        };
-      },
       methods: {
-        getEvenementsApi(id){
-          httpclient.get(`Evenements/${id}`)
-          .then(reponse => this.evenement = reponse.data)
-          .catch(error => console.log(error))
-        }
+        ...mapActions({ 
+          getEvenementApi: 'getEvenementApi'}),
       },
       created(){
-        this.getEvenementsApi(this.$route.params.id)
+        this.getEvenementApi(this.$route.params.id)
+        .catch((error) => this.$toast.error(`Erreur lors de la comunication avec le serveur lors du chargement de l'évènement. (Error: ${error.response == null ? error.code : error.response.status})`))
+      },
+      computed: {
+        ...mapState({evenement: 'evenement'})
       }
     };
     </script>
