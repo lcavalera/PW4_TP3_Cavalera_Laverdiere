@@ -13,8 +13,7 @@
                     <router-link to="/statistique">Statistique</router-link>
                 </div>
                 <div v-if="isLoggedIn()" id="login">
-                    
-                    <router-link to="/login">{{ displayProfileName() }}</router-link>
+                    <router-link to="/login"> {{ displayProfileName() }}</router-link>        
                 </div>
                 <div v-if="!isLoggedIn()" id="login">
                     <router-link to="/login">Login</router-link>
@@ -33,9 +32,9 @@
 <script>
 import mainOidc from '@/api/authClient';
 import { Buffer } from 'buffer';
+
 // @ts-ignore
 window.Buffer = Buffer;
-
     export default {
         methods:{
             isAdmin(){

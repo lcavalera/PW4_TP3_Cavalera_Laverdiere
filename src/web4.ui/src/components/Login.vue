@@ -7,7 +7,7 @@
           <label for="role">Rôles </label>
           <input v-model="role" type="text" disabled>
         </form><br>
-        <button v-on:click="signOut()">Déconnexion</button>
+        <button @click="signOut">Déconnexion</button>
     </section>
 </template>
 

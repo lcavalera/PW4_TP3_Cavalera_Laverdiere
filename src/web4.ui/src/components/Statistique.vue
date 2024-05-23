@@ -7,7 +7,7 @@
         <th>Profit</th>
       </thead>
       <tbody>
-        <tr v-for="(item, index) in this.statistiques" :key="index">
+        <tr v-for="(item, index) in statistiques" :key="index">
           <td>{{ item.nom }}</td>
           <td>{{ item.profit }}</td>
         </tr>
@@ -17,28 +17,24 @@
 </template>
 
 <script>
-import httpclient from '@/api/httpclient'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'LoginPage',
   props: {
     titre: String
   },
-  data() {
-    return {
-      statistiques: []
-    };
-  },
   created() {
     this.getStatistiqueApi()
+    .catch((error) => this.$toast.error(`Erreur lors de la comunication avec le serveur lors du chargement de la liste des statistiques. (Error: ${error.response == null ? error.code : error.response.status})`))
   },
   methods: {
-    getStatistiqueApi() {
-      httpclient.get(`../GetEvenementsProfitables`)
-        .then(reponse => this.statistiques = reponse.data)
-        .catch(error => console.log(error))
+    ...mapActions({ 
+      getStatistiqueApi: 'getStatistiqueApi'})
+  },
+    computed: {
+      ...mapState({ statistiques: 'statistiques'})
     }
-  }
 }
 </script>
 
