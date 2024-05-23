@@ -7,19 +7,19 @@ import BaseLayout from '@/layout/BaseLayout.vue';
 import mainOidc from './api/authClient.js';
 import PrimeVue from 'primevue/config';
 import MenuBar from 'primevue/menubar';
-
+import 'primevue/resources/themes/aura-light-green/theme.css'
 
 mainOidc.startup().then(ok => 
     {if (ok) 
         {
             const app = createApp(App);
             app.use(store);
-            app.component('BaseLayout', BaseLayout);
+            app.use(PrimeVue);
             app.component('MenuBar', MenuBar);
+            app.component('BaseLayout', BaseLayout);
             app.config.globalProperties.$oidc = mainOidc;
             app.use(Toaster, {position: "top"});
             app.use(router);
-            app.use(PrimeVue);
             app.mount('#app');
         }
     })

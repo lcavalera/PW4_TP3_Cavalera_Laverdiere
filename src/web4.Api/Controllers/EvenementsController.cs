@@ -169,7 +169,7 @@ namespace Events.Api.Controllers
         /// <response code="500">service indisponible pour le moment</response>
         // DELETE api/<EvenementsController>/5
         [HttpDelete("{id}")]
-        [Authorize(Policy = "RequireManager")]
+        //[Authorize(Policy = "RequireManager")]
         [ProducesResponseType(typeof(EvenementDTO), StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
