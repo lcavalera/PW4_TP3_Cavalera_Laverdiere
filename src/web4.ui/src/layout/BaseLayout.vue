@@ -1,5 +1,4 @@
 <template>
-
     <div class="container">
         <header id="header">
             <slot name="header">
@@ -30,6 +29,7 @@
     
     </template>
 <script>
+// import MenuNav from '@/components/MenuNav.vue';
 import mainOidc from '@/api/authClient';
 import { Buffer } from 'buffer';
 

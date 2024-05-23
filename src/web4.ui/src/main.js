@@ -6,6 +6,7 @@ import Toaster from "@meforma/vue-toaster";
 import BaseLayout from '@/layout/BaseLayout.vue';
 import mainOidc from './api/authClient.js';
 import PrimeVue from 'primevue/config';
+import MenuBar from 'primevue/menubar';
 
 
 mainOidc.startup().then(ok => 
@@ -14,6 +15,7 @@ mainOidc.startup().then(ok =>
             const app = createApp(App);
             app.use(store);
             app.component('BaseLayout', BaseLayout);
+            app.component('MenuBar', MenuBar);
             app.config.globalProperties.$oidc = mainOidc;
             app.use(Toaster, {position: "top"});
             app.use(router);

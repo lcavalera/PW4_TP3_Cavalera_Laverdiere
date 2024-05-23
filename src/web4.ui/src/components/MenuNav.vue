@@ -1,5 +1,5 @@
 <template>
-    <Menubar :model="items">
+    <MenuBar :model="items">
         <template #item="{item, props}" >
             <RouterLink v-if="item.route" v-slot="{href, navigate}" :to="item.route" custom>
                 <a v-ripple :href="href" v-bind="props.action" @click="navigate">
@@ -7,12 +7,12 @@
                 </a>
             </RouterLink>
         </template>
-    </Menubar>
+    </MenuBar>
 </template>
 
 <script>
-import Menubar from 'primevue/menubar';
-import { RouterLink } from 'vue-router';
+// import Menubar from 'primevue/menubar';
+// import { RouterLink } from 'vue-router';
 
     export default {
         name: 'MenuNav',
