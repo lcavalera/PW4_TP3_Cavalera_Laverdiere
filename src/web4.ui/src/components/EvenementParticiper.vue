@@ -1,10 +1,11 @@
 <template>
   <div class="evenement">
+    <h2>Details sur l'événement</h2>
     <label>Titre: </label><input id="titre" type="text" v-model="evenement.titre" disabled>
     <label>Date Debut: </label><input id="titre" type="text" v-model="evenement.dateDebut" disabled>
     <label>Date Fin: </label><input id="titre" type="text" v-model="evenement.dateDeFin" disabled>
   </div><br>
-  <h2>Remplir le formulaire pour participer à l'evenement</h2>
+  <h2>Remplir le formulaire pour participer à l'événement</h2>
 <form @submit="addParticipation" class="form" method="post">
   <p v-if="errors.length">
     <b>Veuillez corriger les erreurs suivantes: </b>

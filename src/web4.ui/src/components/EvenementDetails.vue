@@ -1,5 +1,6 @@
 <template>
-    <form class="evenement">
+  <form class="evenement">
+    <h2>Details sur l'événement</h2>
     <label>Titre: </label><input id="titre" type="text" v-model="evenement.titre" disabled>
     <label>Date Debut: </label><input id="titre" type="text" v-model="evenement.dateDebut" disabled>
     <label>Date Fin: </label><input id="titre" type="text" v-model="evenement.dateDeFin" disabled>
